@@ -12,7 +12,7 @@
 #endif
 
 #include <NonBlockingDallas.h>
-#include "sensors/SensorInterface.h"
+#include <SensorInterface.h>
 
 class DS18B20_Temperature : public NonBlockingDallas, public SensorInterface {
 private:

@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include <vector>
 #include <CommsOutInterface.h>  // From interfaces module
-#include "sensors/SensorInterface.h"
+#include <SensorInterface.h>
 
 #ifdef USE_DS18B20
 #include "sensors/DS18B20_Temperature/DS18B20_Temperature.h"
