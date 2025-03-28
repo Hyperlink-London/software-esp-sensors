@@ -1,12 +1,19 @@
+// Comment out the sensors which are not being used
+#define USE_DEMO
+#define USE_DEMO_TWO
+
 #include "SensorManager.h"
 
 SensorManager::SensorManager(CommsOutInterface* commsOut)
     : comms(commsOut)
 {
-#ifdef USE_DS18B20
-    const uint8_t DS18B20_pin = 4;
-    SensorInterface* DS18B20_temp_sensor = new DS18B20_Temperature(DS18B20_pin);
-    sensors.push_back({ DS18B20_temp_sensor, NAN, 0 });
+#ifdef USE_DEMO
+    SensorInterface* demo_sensor = new Demo();
+    sensors.push_back({ demo_sensor, NAN, 0 });
+#endif
+#ifdef USE_DEMO_TWO
+    SensorInterface* demo_sensor_two = new DemoTwo();
+    sensors.push_back({ demo_sensor_two, NAN, 0 });
 #endif
 }
 

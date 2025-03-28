@@ -6,8 +6,11 @@
 #include <CommsOutInterface.h>  // From interfaces module
 #include <SensorInterface.h>
 
-#ifdef USE_DS18B20
-#include "sensors/DS18B20_Temperature/DS18B20_Temperature.h"
+#ifdef USE_DEMO
+    #include "demo.h"
+#endif
+#ifdef USE_DEMO_TWO
+    #include "demoTwo.h"
 #endif
 
 class SensorManager {
