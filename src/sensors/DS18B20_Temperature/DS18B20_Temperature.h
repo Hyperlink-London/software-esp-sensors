@@ -12,8 +12,9 @@
 #endif
 
 #include <NonBlockingDallas.h>
+#include "sensors/SensorInterface.h"
 
-class DS18B20_Temperature : public NonBlockingDallas {
+class DS18B20_Temperature : public NonBlockingDallas, public SensorInterface {
 private:
     DallasTemperature dallasTemp;
     OneWire onewire;
@@ -23,7 +24,10 @@ private:
 
 public:
     DS18B20_Temperature(uint8_t pin);
-    void setup();
+    void setup() override;
+    void update() override;
+    float getVal() const override;
+    String getName() const override;
     static void handleIntervalElapsed(float temperature, bool valid, int deviceIndex);
     void printTemperature();
 };
