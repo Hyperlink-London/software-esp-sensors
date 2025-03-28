@@ -1,15 +1,19 @@
 #ifndef SENSOR_MANAGER_H
 #define SENSOR_MANAGER_H
 
+#include "config.h"
+
 #include <Arduino.h>
 #include <vector>
 #include <CommsOutInterface.h>  // From interfaces module
 #include <SensorInterface.h>
 
 #ifdef USE_DEMO
+    #warning "USE_DEMO is defined"
     #include "demo.h"
 #endif
 #ifdef USE_DEMO_TWO
+    #warning "USE_DEMO_TWO is defined"
     #include "demoTwo.h"
 #endif
 

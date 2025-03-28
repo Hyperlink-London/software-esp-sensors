@@ -1,7 +1,3 @@
-// Comment out the sensors which are not being used
-#define USE_DEMO
-#define USE_DEMO_TWO
-
 #include "SensorManager.h"
 
 SensorManager::SensorManager(CommsOutInterface* commsOut)
