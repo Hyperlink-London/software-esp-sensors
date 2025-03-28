@@ -3,10 +3,8 @@
 
 #include <Arduino.h>
 #include <vector>
+#include <CommsOutInterface.h>  // From interfaces module
 #include "sensors/SensorInterface.h"
-
-// Forward declaration of CommsOut (defined in another submodule)
-class CommsOut;
 
 #ifdef USE_DS18B20
 #include "sensors/DS18B20_Temperature/DS18B20_Temperature.h"
@@ -21,12 +19,12 @@ private:
     };
 
     std::vector<SensorState> sensors;
-    CommsOut* comms;  // Pointer to external comms object
+    CommsOutInterface* comms;  // Abstract interface, not a concrete type
 
     static const unsigned long MAX_SILENT_PERIOD_MS = 5000;
 
 public:
-    SensorManager(CommsOut* commsOut);
+    SensorManager(CommsOutInterface* commsOut);
     ~SensorManager();
 
     void setup();
