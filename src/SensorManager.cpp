@@ -1,6 +1,8 @@
 #include "SensorManager.h"
 
-SensorManager::SensorManager() {
+SensorManager::SensorManager(CommsOut* commsOut)
+    : comms(commsOut)  // initialises the comms pointer
+{
 #ifdef USE_DS18B20
     const uint8_t DS18B20_pin = 4;
     SensorInterface* DS18B20_temp_sensor = new DS18B20_Temperature(DS18B20_pin);
@@ -31,7 +33,7 @@ void SensorManager::pollSensors() {
         bool isStale = (now - s.lastSentTime) >= MAX_SILENT_PERIOD_MS;
 
         if (isNewValue || isStale) {
-            // comms.send(s.sensor->getName(), val);
+            comms->send(s.sensor->getName(), val);
             s.lastValue = val;
             s.lastSentTime = now;
         }
