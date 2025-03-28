@@ -11,18 +11,18 @@ sensors/
 ├── src/
 │   ├── SensorManager.h
 │   ├── SensorManager.cpp
-│   ├── SensorInterface.h
-│   └── <SensorName>/
-│       ├── <SensorName>.h
-│       └── <SensorName>.cpp
+│   ├── sensors/
+│   │   └── <SensorName>/
+│   │       ├── <SensorName>.h
+│   │       └── <SensorName>.cpp
 ├── library.properties
 └── README.md
 ```
 
 - `SensorManager.h/cpp`: Core logic for managing sensor setup and polling. Integrates all registered sensors and handles update logic.
-- `SensorInterface.h`: Abstract base class that all sensors must implement to be managed by the `SensorManager`.
-- `<SensorName>/`: Sensor-specific folders containing sensor drivers implementing the interface.
+- `sensors/`: Contains folders for individual sensor drivers, each implementing the shared sensor interface.
 - `library.properties`: Metadata for Arduino CLI and IDE compatibility.
+
 
 ## Purpose
 
@@ -35,9 +35,9 @@ This library provides a hardware-agnostic, interface-driven framework for integr
 
 ## Design and Interfaces
 
-### SensorInterface
+### SensorInterface (defined in the `interfaces` submodule)
 
-Each sensor must implement the following interface:
+Each sensor must implement the following interface, which is defined in the shared `interfaces` module:
 
 ```cpp
 class SensorInterface {
@@ -107,6 +107,6 @@ Only sensors explicitly enabled will be instantiated and managed by the system.
 
 ## Development Notes
 
-- Each sensor driver must reside in its own subdirectory under `src/` and implement `SensorInterface`.
+- Each sensor driver must reside in its own subdirectory under `src/` and implement `SensorInterface` (from the `interfaces` module).
 - `SensorManager` owns the lifecycle and update policy for all registered sensors.
 - The library is designed to remain decoupled from any specific communication protocol or backend; all data flows through the abstract `CommsOutInterface`.
