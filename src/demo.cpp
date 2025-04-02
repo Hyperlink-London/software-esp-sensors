@@ -14,5 +14,5 @@ float Demo::getVal() const {
 }
 
 String Demo::getName() const {
-    return "Demo";
+    return "demo";
 }
