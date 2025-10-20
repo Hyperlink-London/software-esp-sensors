@@ -1,7 +1,7 @@
 #include "demoTwo.h"
 
 void DemoTwo::setup() {
-    // do nothing
+    // TODO: setup pins here
 }
 
 void DemoTwo::update() {

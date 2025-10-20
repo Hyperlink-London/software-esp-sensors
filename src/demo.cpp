@@ -1,7 +1,7 @@
 #include "demo.h"
 
 void Demo::setup() {
-    // do nothing
+    // TODO: setup pins here
 }
 
 void Demo::update() {
