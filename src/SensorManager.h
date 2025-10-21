@@ -3,6 +3,7 @@
 
 #include "config.h"
 
+#include <SerialAliases.h>
 #include <Arduino.h>
 #include <vector>
 #include <CommsOutInterface.h>  // From interfaces module
@@ -27,6 +28,7 @@ private:
 
     std::vector<SensorState> sensors;
     CommsOutInterface* comms;  // Abstract interface, not a concrete type
+    bool pinsValidated;  // Track if pin validation passed
 
     static const unsigned long MAX_SILENT_PERIOD_MS = 5000;
 
@@ -36,6 +38,9 @@ public:
 
     void setup();
     void pollSensors();
+    bool validatePins();
+
+    bool arePinsValidated() const;
 };
 
 #endif
