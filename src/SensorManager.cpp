@@ -15,6 +15,7 @@ SensorManager::SensorManager(CommsOutInterface* commsOut)
 #endif
 
     // Validate pins immediately after sensor creation
+    // TODO: this causes the ESP to crash and enter a bootloop.  handle error more gracefully
     pinsValidated = validatePins();
     
     if (!pinsValidated) {
@@ -35,7 +36,7 @@ void SensorManager::setup() {
         Serial_1.println("Fix pin conflicts and restart the system.");
         return;
     }
-    
+
     Serial_1.println("Setting up sensors...");
     for (auto& s : sensors) {
         s.sensor->setup();
@@ -45,6 +46,10 @@ void SensorManager::setup() {
 }
 
 void SensorManager::pollSensors() {
+    if(!pinsValidated) {
+        Serial_1.println("ERROR: Cannot setup sensors - pin validation failed!");
+        return;
+    }
     unsigned long now = millis();
 
     for (auto& s : sensors) {
