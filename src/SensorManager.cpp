@@ -41,6 +41,7 @@ void SensorManager::setup() {
         s.sensor->setup();
     }
     Serial_1.println("Sensor setup complete.");
+    // TODO: send msg to OBC to say it has setup
 }
 
 void SensorManager::pollSensors() {
